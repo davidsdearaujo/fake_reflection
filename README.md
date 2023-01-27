@@ -51,6 +51,5 @@ void main() {
    }
   */
   print(classData.positionalParams); //PositionalParam(type: int, nullable: false)
-
 }
 ```
