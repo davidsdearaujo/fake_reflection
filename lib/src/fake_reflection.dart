@@ -530,8 +530,8 @@ Iterable<Token> _tokenize(String data) sync* {
         }
         break;
 
-      case TokenizerMode
-          .exponent: // "0e0", "-0e0", "00e0", "1e0", "-00e0", "0.0e0", "-0.0e0", "00.0e0", "1.0e0", "-00.0e0", "0e-0", "-0e-0", "00e-0", "1e-0", "-00e-0", "0.0e-0", "-0.0e-0", "00.0e-0", "1.0e-0", "-00.0e-0"
+      // "0e0", "-0e0", "00e0", "1e0", "-00e0", "0.0e0", "-0.0e0", "00.0e0", "1.0e0", "-00.0e0", "0e-0", "-0e-0", "00e-0", "1e-0", "-00e-0", "0.0e-0", "-0.0e-0", "00.0e-0", "1.0e-0", "-00.0e-0"
+      case TokenizerMode.exponent:
         switch (current) {
           case -1:
             yield DoubleToken(double.parse(String.fromCharCodes(buffer)), line, column);

@@ -1,6 +1,6 @@
 name: fake_reflection
 description: A package to get a class structure (like reflection) in runtime without code generation.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/davidsdearaujo/fake_reflection
 
 environment:

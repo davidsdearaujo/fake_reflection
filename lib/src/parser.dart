@@ -118,7 +118,7 @@ class Parser {
     do {
       yield _readPositionalParam();
       _maybeReadSymbol(SymbolToken.comma);
-    } while (!_foundAnySymbol([SymbolToken.openBrace, SymbolToken.closeParen]));
+    } while (!_foundAnySymbol([SymbolToken.openBrace, SymbolToken.openBracket, SymbolToken.closeBracket, SymbolToken.closeParen]));
   }
 
   NamedParam _readNamedParam() {
@@ -151,13 +151,18 @@ class Parser {
   ClassData readClosureString() {
     var namedParams = <NamedParam>{};
     var positionalParams = <PositionalParam>[];
+    var notRequiredPositionalParams = <PositionalParam>[];
     String className;
 
     _expectIdentifier('Closure');
     _expectSymbol(SymbolToken.colon);
     _expectSymbol(SymbolToken.openParen);
-    if (!_foundSymbol(SymbolToken.openBrace)) {
+    if (!_foundAnySymbol([SymbolToken.openBrace, SymbolToken.openBracket])) {
       positionalParams = _readPositionalParams().toList();
+    }
+    if (_maybeReadSymbol(SymbolToken.openBracket)) {
+      notRequiredPositionalParams = _readPositionalParams().toList();
+      _expectSymbol(SymbolToken.closeBracket);
     }
     if (_maybeReadSymbol(SymbolToken.openBrace)) {
       namedParams = _readNamedParams().toSet();
@@ -171,6 +176,7 @@ class Parser {
       className: className,
       namedParams: namedParams,
       positionalParams: positionalParams,
+      notRequiredPositionalParams: notRequiredPositionalParams,
     );
   }
 }

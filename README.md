@@ -5,6 +5,7 @@ It's a package to get a class structure (like reflection) in runtime without cod
  - Get Class name;
  - Get named params: _name, type, isNullable, isRequired_;
  - Get positional params: _type, isNullable_
+ - Get positional not required params: _type, isNullable_
 
 ## Usage
 
@@ -42,14 +43,24 @@ class Test1Class {
 
 void main() {
   ClassData classData = Test1Class.new.reflection();
-  print(classData.className); //Test1Class
-  print(classData.namedParams); /* 
-  {
-     NamedParam(name: param2, type: String, required: false, nullable: true), 
-     NamedParam(name: param3, type: Map<dynamic, dynamic>, required: true, nullable: false), 
-     NamedParam(name: param4, type: Map<List<dynamic>, double>, required: true, nullable: true)
-   }
-  */
-  print(classData.positionalParams); //PositionalParam(type: int, nullable: false)
+  print(classData.className);
+  // output: Test1Class
+
+  print(classData.namedParams);
+  // output:
+  // {
+  //    NamedParam(name: param2, type: String, required: false, nullable: true), 
+  //    NamedParam(name: param3, type: Map<dynamic, dynamic>, required: true, nullable: false), 
+  //    NamedParam(name: param4, type: Map<List<dynamic>, double>, required: true, nullable: true)
+  // }
+  
+  print(classData.positionalParams); 
+  // output: 
+  // [
+  //   PositionalParam(type: int, nullable: false, required: true),
+  // ]
+  
+  print(classData.notRequiredPositionalParams); 
+  //output: []
 }
 ```

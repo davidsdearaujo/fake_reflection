@@ -32,6 +32,17 @@ class Test3Class {
   });
 }
 
+class Test4Class {
+  final int? param1;
+  final bool? param2;
+  const Test4Class(this.param1, [this.param2]);
+}
+
+class Test5Class {
+  final int? param1;
+  const Test5Class([this.param1]);
+}
+
 void main() {
   group('reflection()', () {
     group('Test1Class', () {
@@ -54,6 +65,9 @@ void main() {
           const PositionalParam(type: 'int', nullable: false),
         ]);
       });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams.isEmpty, true);
+      });
     });
     group('Test2Class', () {
       late ClassData classData;
@@ -70,6 +84,9 @@ void main() {
         expect(classData.positionalParams, [
           const PositionalParam(type: 'int', nullable: true),
         ]);
+      });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams.isEmpty, true);
       });
     });
     group('Test3Class', () {
@@ -89,6 +106,51 @@ void main() {
       });
       test('positionalParams', () {
         expect(classData.positionalParams, [
+          const PositionalParam(type: 'int', nullable: true),
+        ]);
+      });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams.isEmpty, true);
+      });
+    });
+    group('Test4Class', () {
+      late ClassData classData;
+      setUp(() {
+        classData = Test4Class.new.reflection();
+      });
+      test('className', () {
+        expect(classData.className, 'Test4Class');
+      });
+      test('namedParams', () {
+        expect(classData.namedParams.isEmpty, true);
+      });
+      test('positionalParams', () {
+        expect(classData.positionalParams, [
+          const PositionalParam(type: 'int', nullable: true),
+        ]);
+      });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams, [
+          const PositionalParam(type: 'bool', nullable: true),
+        ]);
+      });
+    });
+    group('Test5Class', () {
+      late ClassData classData;
+      setUp(() {
+        classData = Test5Class.new.reflection();
+      });
+      test('className', () {
+        expect(classData.className, 'Test5Class');
+      });
+      test('namedParams', () {
+        expect(classData.namedParams.isEmpty, true);
+      });
+      test('positionalParams', () {
+        expect(classData.positionalParams.isEmpty, true);
+      });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams, [
           const PositionalParam(type: 'int', nullable: true),
         ]);
       });
