@@ -1,5 +1,5 @@
 
-It's a package to get a class structure (like reflection) in runtime without code generation.
+Package to get a class structure (like reflection) in runtime without code generation.
 
 ## Features
  - Get Class name;
