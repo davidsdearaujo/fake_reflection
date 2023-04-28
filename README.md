@@ -1,32 +1,40 @@
+# fake_reflection
 
-Package to get a class structure (like reflection) in runtime **without code generation.**
+A flutter package to get class structure in runtime without code generation. With this package, you can get the class name, named params, positional params, and positional non-required params.
 
 ## Features
- - Get Class name;
- - Get named params: _name, type, isNullable, isRequired_;
- - Get positional params: _type, isNullable_
- - Get positional not required params: _type, isNullable_
 
-## Usage
+- Get class name
+- Get named params: name, type, isNullable, isRequired
+- Get positional params: type, isNullable
+- Get positional non-required params: type, isNullable
 
-pubspec.yaml
+## Installation
+
+Add this to your `pubspec.yaml` file:
+
 ```yaml
 dependencies:
  ...
  fake_reflection: <last version here>
 ```
 
-import
+## Usage
+
+Import the package into your dart code:
+
 ```dart
 import 'package:fake_reflection/fake_reflection.dart';
 ```
 
-using
+To use it, simply create an instance of the class you want to reflect on and call the `reflection()` method on it:
+
 ```dart
-  ClassData classData = YourClass.new.reflection();
+ClassData classData = YourClass.new.reflection();
 ```
 
-Example
+## Example
+
 ```dart
 class Test1Class {
   final int param1;
@@ -64,3 +72,5 @@ void main() {
   //output: []
 }
 ```
+
+That's it! You can now use the `fake_reflection` package to reflect on class structures in runtime without code generation.
