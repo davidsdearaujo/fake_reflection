@@ -1,6 +1,6 @@
 # fake_reflection
 
-A flutter package to get class structure in runtime without code generation. With this package, you can get the class name, named params, positional params, and positional non-required params.
+A flutter package to get class structure in runtime **without code generation**. With this package, you can get the class name, named params, positional params, and positional non-required params.
 
 ## Features
 
