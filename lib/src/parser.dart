@@ -157,16 +157,18 @@ class Parser {
     _expectIdentifier('Closure');
     _expectSymbol(SymbolToken.colon);
     _expectSymbol(SymbolToken.openParen);
-    if (!_foundAnySymbol([SymbolToken.openBrace, SymbolToken.openBracket])) {
-      positionalParams = _readPositionalParams().toList();
-    }
-    if (_maybeReadSymbol(SymbolToken.openBracket)) {
-      notRequiredPositionalParams = _readPositionalParams().toList();
-      _expectSymbol(SymbolToken.closeBracket);
-    }
-    if (_maybeReadSymbol(SymbolToken.openBrace)) {
-      namedParams = _readNamedParams().toSet();
-      _expectSymbol(SymbolToken.closeBrace);
+    if (!_foundSymbol(SymbolToken.closeParen)) {
+      if (!_foundAnySymbol([SymbolToken.openBrace, SymbolToken.openBracket])) {
+        positionalParams = _readPositionalParams().toList();
+      }
+      if (_maybeReadSymbol(SymbolToken.openBracket)) {
+        notRequiredPositionalParams = _readPositionalParams().toList();
+        _expectSymbol(SymbolToken.closeBracket);
+      }
+      if (_maybeReadSymbol(SymbolToken.openBrace)) {
+        namedParams = _readNamedParams().toSet();
+        _expectSymbol(SymbolToken.closeBrace);
+      }
     }
     _expectSymbol(SymbolToken.closeParen);
     _expectSymbol(SymbolToken.equals);

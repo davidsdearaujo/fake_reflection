@@ -43,6 +43,8 @@ class Test5Class {
   const Test5Class([this.param1]);
 }
 
+class Test6Class<T> {}
+
 void main() {
   group('reflection()', () {
     group('Test1Class', () {
@@ -153,6 +155,24 @@ void main() {
         expect(classData.notRequiredPositionalParams, [
           const PositionalParam(type: 'int', nullable: true),
         ]);
+      });
+    });
+    group('Test6Class (without params)', () {
+      late ClassData classData;
+      setUp(() {
+        classData = Test6Class<Test5Class>.new.reflection();
+      });
+      test('className', () {
+        expect(classData.className, 'Test6Class');
+      });
+      test('namedParams', () {
+        expect(classData.namedParams.isEmpty, true);
+      });
+      test('positionalParams', () {
+        expect(classData.positionalParams.isEmpty, true);
+      });
+      test('notRequiredPositionalParams', () {
+        expect(classData.notRequiredPositionalParams, []);
       });
     });
   });
