@@ -1,7 +1,7 @@
 import '../token.dart';
 
 class SymbolToken extends Token {
-  SymbolToken(this.symbol, int line, int column) : super(line, column);
+  const SymbolToken(this.symbol, int line, int column) : super(line, column);
   final int symbol;
 
   static const int dot = 0x2E;
