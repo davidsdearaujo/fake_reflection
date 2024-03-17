@@ -6,7 +6,7 @@ export 'tokens/string_token.dart';
 export 'tokens/symbol_token.dart';
 
 abstract class Token {
-  Token(this.line, this.column);
+  const Token(this.line, this.column);
   final int line;
   final int column;
 }
